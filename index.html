@@ -41,6 +41,11 @@
             padding: 20px;
             min-height: 100vh;
             overflow-x: hidden;
+            
+            /* Disable text selection across the page */
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         ::-webkit-scrollbar { width: 16px; }
@@ -266,20 +271,20 @@
             box-shadow: var(--shadow); border-radius: 8px; overflow: hidden; position: relative;
         }
         #matrix-canvas {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; display: none; z-index: 1; /* Changed from 10 to 1 */ 
-    opacity: 0.85;
-}
-.terminal-header {
-    position: relative; z-index: 2; /* Added relative positioning and higher z-index */
-    background: var(--term-header); padding: 10px 15px; border-bottom: 2px solid var(--border);
-    display: flex; align-items: center; gap: 8px;
-}
-.terminal-body {
-    position: relative; z-index: 2; /* Added relative positioning and higher z-index */
-    padding: 1.5rem; height: 350px; overflow-y: auto;
-    font-family: 'Fira Code', monospace; font-size: 1rem; color: var(--term-text);
-}
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; display: none; z-index: 1;
+            opacity: 0.85;
+        }
+        .terminal-header {
+            position: relative; z-index: 2;
+            background: var(--term-header); padding: 10px 15px; border-bottom: 2px solid var(--border);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .terminal-body {
+            position: relative; z-index: 2;
+            padding: 1.5rem; height: 350px; overflow-y: auto;
+            font-family: 'Fira Code', monospace; font-size: 1rem; color: var(--term-text);
+        }
         .term-btn { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--border); }
         .terminal-title { color: #888; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-left: 10px; }
         .term-output { margin-bottom: 1rem; white-space: pre-wrap; line-height: 1.5; }
@@ -288,6 +293,11 @@
         .term-input {
             background: transparent; border: none; color: var(--term-text);
             font-family: 'Fira Code', monospace; font-size: 1rem; flex-grow: 1; outline: none;
+            
+            /* Allow text selection specifically for the input field */
+            -webkit-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
 
         /* Payment */
@@ -537,7 +547,7 @@ Welcome! Type <span style="color: #ffeb3b;">'help'</span> to see available comma
 
         <footer class="footer">
             <div>© 2026 Vivek Rakesh Tiwary. All Rights Reserved.</div>
-            <div>Open to Work (Freelance & Internship Opportunities)</div>
+            <div>Open to Work (Freelance & Internships) | GSTIN: 10AAMCK9024F1ZR</div>
         </footer>
     </div>
 
@@ -699,6 +709,36 @@ DevOps:    Custom SSR, RAG Pipelines, Ollama, OCR`,
             }
             matrixCanvas.style.display = 'none';
         }
+
+        // --- SECURITY FEATURES ---
+        
+        
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        
+        document.addEventListener('keydown', function(e) {
+            // Disable F12
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+            }
+            
+            // Disable Ctrl+Shift+I 
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) {
+                e.preventDefault();
+            }
+            
+            // Disable Ctrl+Shift+C 
+            if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
+                e.preventDefault();
+            }
+            
+            // Disable Ctrl+U 
+            if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+                e.preventDefault();
+            }
+        });
     </script>
 </body>
 </html>
