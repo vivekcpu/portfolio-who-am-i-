@@ -2,7 +2,7 @@
 
 Welcome to the source code of my personal portfolio. Designed with a brutalist aesthetic, this static site serves as a showcase of my full-stack engineering experience, competitive programming achievements, and latest projects.
 
-🔗 **Live Site:** [https://vivekcpu.github.io/portfolio-who-am-i-/]
+🔗 **Live Site:** https://vivekcpu.github.io/portfolio-who-am-i-/
 
 ## ✨ Features
 
